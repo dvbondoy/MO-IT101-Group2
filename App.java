@@ -1,6 +1,6 @@
-package com.mppi;
-
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 /**
  * Hello world!
@@ -9,16 +9,16 @@ import java.util.Scanner;
 public class App 
 {
     // variables for employee details
-    static String emp_number = "10001";
-    static String name = "Jose Crisostomo";
-    static String bday = "February 14, 1988";
-    static int basic_salary = 62670;
+    static String emp_number = "";
+    static String name = "";
+    static String bday = "";
+    static double basic_salary = 0;
     // static int basic_salary = 24750;
-    static double rice_subsidy = 1500;
-    static double phone_allowance = 1000;
-    static double clothing_allowance = 1000;
-    static double total_perks = (phone_allowance + rice_subsidy + clothing_allowance);
-    static double hourly_rate = 373.04d;
+    static double rice_subsidy = 0;
+    static double phone_allowance = 0;
+    static double clothing_allowance = 0;
+    static double total_perks = 0;
+    static double hourly_rate = 0d;
     static double gross = 0;
     static Scanner input = new Scanner(System.in);
 
@@ -45,12 +45,59 @@ public class App
         System.out.printf("Enter password:");
         String password = input.nextLine();
 
-        if(username.equals("10001") && password.equals("letmein"))
-        {
+        String[] details = open_text(username);
+
+        if(details != null && password.equals("letmein")){
+            emp_number = details[0];
+            name = details[1];
+            bday = details[2];
+            basic_salary = Double.parseDouble(details[3]);
+            rice_subsidy = Double.parseDouble(details[4]);
+            phone_allowance = Double.parseDouble(details[5]);
+            clothing_allowance = Double.parseDouble(details[6]);
+            hourly_rate = Double.parseDouble(details[8]);
+
+
             return true;
         }
 
         return false;
+    }
+
+    public static String[] open_text(String username)
+    {
+        try {
+            // create br variable to hold csv file data
+            // open our csv file with FileReader giving our path with csv_file variable
+            BufferedReader br = new BufferedReader(new FileReader("employee-details.csv"));
+            String line = "";
+
+            // create a while loop and assign our csv file to line variable
+            // until the end of the file {null}
+            while((line = br.readLine()) != null) {
+                // create an array of string variable that will hold each line
+                // each array element is separated by our separator variable
+                // this will result to: employee = {"10001","Juan","Dela Cruz","etc"}
+                // to access each element we have to declare: employee[0] for 10001, employee[1] for Juan and etc
+                String[] employee = line.split(",");
+
+                if(employee[0].equals(username)) {
+                    // System.out.println(employee.length);
+                    // System.out.println(String.format("Employee ID: %s",employee[0]));
+                    // System.out.println(String.format("Lastname: %s",employee[1]));
+                    // System.out.println(String.format("Firstname: %s",employee[2]));
+                    br.close();
+                    return employee;
+                }
+            }
+
+            br.close();
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.print("File not found!");
+        }
+
+        return null;
     }
 
     public static void main_menu()
@@ -123,7 +170,7 @@ public class App
         System.out.printf("-----------------------------------------------%n");
         System.out.printf("| %-20s | %-20.2f |%n", "Gross income:", gross);
         System.out.printf("-----------------------------------------------%n");
-        System.out.printf("| %-20s | %-20.2f |%n", "Total perks:", total_perks/4);
+        System.out.printf("| %-20s | %-20.2f |%n", "Total perks:", (rice_subsidy+phone_allowance+clothing_allowance)/4);
         System.out.printf("-----------------------------------------------%n");
         System.out.printf("| %-20s | %-20.2f |%n", "Net Income:", net);
         System.out.printf("-----------------------------------------------%n");
