@@ -17,7 +17,6 @@ public class App
     static double rice_subsidy = 0;
     static double phone_allowance = 0;
     static double clothing_allowance = 0;
-    static double total_perks = 0;
     static double hourly_rate = 0d;
     static double gross = 0;
     static Scanner input = new Scanner(System.in);
@@ -144,6 +143,7 @@ public class App
         double phealth = compute_philhealth();
         double withholding = compute_withholding();
 
+        double perks = (rice_subsidy+phone_allowance+clothing_allowance)/4;
         double deductions = sss+pagibig+phealth+withholding;
         double net = gross - deductions;
 
@@ -170,7 +170,7 @@ public class App
         System.out.printf("-----------------------------------------------%n");
         System.out.printf("| %-20s | %-20.2f |%n", "Gross income:", gross);
         System.out.printf("-----------------------------------------------%n");
-        System.out.printf("| %-20s | %-20.2f |%n", "Total perks:", (rice_subsidy+phone_allowance+clothing_allowance)/4);
+        System.out.printf("| %-20s | %-20.2f |%n", "Total perks:", perks);
         System.out.printf("-----------------------------------------------%n");
         System.out.printf("| %-20s | %-20.2f |%n", "Net Income:", net);
         System.out.printf("-----------------------------------------------%n");
@@ -264,21 +264,7 @@ public class App
         }else{
             return base;
         }
-        // if(basic_salary <= 10000){
-        //     if(base <= 300){
-        //         return 300;
-        //     }else{
-        //         return base;
-        //     }
-        // }else if(basic_salary >=10000.01 && basic_salary <= 59999.99){
-        //     return base;
-        // }else{
-        //     if(base >= 1800){
-        //         return 1800;
-        //     }else{
-        //         return base;
-        //     }
-        // }
+        
     }
 
     public static double compute_withholding()
