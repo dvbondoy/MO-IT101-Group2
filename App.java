@@ -1,6 +1,10 @@
 import java.util.Scanner;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintStream;
 
 /**
  * Hello world!
@@ -13,7 +17,6 @@ public class App
     static String name = "";
     static String bday = "";
     static double basic_salary = 0;
-    // static int basic_salary = 24750;
     static double rice_subsidy = 0;
     static double phone_allowance = 0;
     static double clothing_allowance = 0;
@@ -29,8 +32,6 @@ public class App
             System.exit(0);
         }
 
-        gross = total_hours() * hourly_rate;
-
         clear_screen();
         main_menu();
     }
@@ -44,9 +45,12 @@ public class App
         System.out.printf("Enter password:");
         String password = input.nextLine();
 
+        // find employee number in the file
         String[] details = open_text(username);
 
+        // check if details is not null and password is correct
         if(details != null && password.equals("letmein")){
+            // put all details in the variables
             emp_number = details[0];
             name = details[1];
             bday = details[2];
@@ -56,10 +60,11 @@ public class App
             clothing_allowance = Double.parseDouble(details[6]);
             hourly_rate = Double.parseDouble(details[8]);
 
-
+            // login succes so return true
             return true;
         }
 
+        // login failed, return false
         return false;
     }
 
@@ -81,10 +86,6 @@ public class App
                 String[] employee = line.split(",");
 
                 if(employee[0].equals(username)) {
-                    // System.out.println(employee.length);
-                    // System.out.println(String.format("Employee ID: %s",employee[0]));
-                    // System.out.println(String.format("Lastname: %s",employee[1]));
-                    // System.out.println(String.format("Firstname: %s",employee[2]));
                     br.close();
                     return employee;
                 }
@@ -99,6 +100,36 @@ public class App
         return null;
     }
 
+    public static void out_text()
+    {
+        PrintStream out = null;
+        FileOutputStream fout = null;
+        PrintStream stdout = System.out;
+
+        try {
+            // create a printstream object and fileoutput stream
+            fout = new FileOutputStream("out.txt");
+            out = new PrintStream(fout);
+            // set output to stream
+            System.setOut(out);
+
+            print_details();
+
+            // close all stream
+            fout.close();
+            out.close();
+
+            // reset output to console
+            System.setOut(stdout);
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
     public static void main_menu()
     {
         System.out.println("");
@@ -107,7 +138,8 @@ public class App
         System.out.printf("+---------------------------------------------+\n");
         System.out.println("[ 1 ] : Payroll");
         System.out.println("[ 2 ] : Inventory");
-        System.out.println("[ 3 ] : Exit\n");
+        System.out.println("[ 3 ] : Print");
+        System.out.println("[ 4 ] : Exit\n");
         
         System.out.printf("Enter choice: ");
         String choice = input.nextLine();
@@ -116,6 +148,7 @@ public class App
         {
             clear_screen();
             print_details();
+            main_menu();
         }
         else if(choice.equals("2"))
         {
@@ -124,6 +157,12 @@ public class App
             main_menu();
         }
         else if(choice.equals("3"))
+        {
+            out_text();
+            System.out.println("Details saved in out.txt");
+            main_menu();
+        }
+        else if(choice.equals("4"))
         {
             clear_screen();
             input.close();
@@ -138,6 +177,7 @@ public class App
 
     public static void print_details()
     {
+        gross = total_hours() * hourly_rate;
         double sss = compute_sss();
         double pagibig = compute_pagibig();
         double phealth = compute_philhealth();
@@ -188,8 +228,6 @@ public class App
         System.out.printf("-----------------------------------------------%n");
         System.out.printf("| %-20s | %-20.2f |%n", "Total Deductions:", deductions);
         System.out.printf("-----------------------------------------------%n");
-
-        main_menu();
     }
 
     public static void clear_screen()
