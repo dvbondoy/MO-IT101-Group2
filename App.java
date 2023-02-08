@@ -26,9 +26,17 @@ public class App
 
     public static void main( String[] args )
     {
-        if(!login())
-        {
-            System.out.println("Incorrect credentials!");
+        int tries = 1;
+        while(tries <=3){
+            if(!login()){
+                System.out.println("Invalid credentials");
+            }else{
+                break;
+            }
+            tries += 1;
+        }
+
+        if(tries > 3){
             System.exit(0);
         }
 
@@ -159,7 +167,7 @@ public class App
         else if(choice.equals("3"))
         {
             out_text();
-            System.out.println("Details saved in out.txt");
+            System.out.println("Details saved! (out.txt)");
             main_menu();
         }
         else if(choice.equals("4"))
