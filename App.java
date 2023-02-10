@@ -88,7 +88,7 @@ public class App
             // until the end of the file {null}
             while((line = br.readLine()) != null) {
                 // create an array of string variable that will hold each line
-                // each array element is separated by our separator variable
+                // each array element is separated by comma
                 // this will result to: employee = {"10001","Juan","Dela Cruz","etc"}
                 // to access each element we have to declare: employee[0] for 10001, employee[1] for Juan and etc
                 String[] employee = line.split(",");
@@ -110,20 +110,18 @@ public class App
 
     public static void out_text()
     {
-        PrintStream out = null;
-        FileOutputStream fout = null;
-        PrintStream stdout = System.out;
-
         try {
+            // save standard output first to we can go back later
+            PrintStream stdout = System.out;
             // create a printstream object and fileoutput stream
-            fout = new FileOutputStream("out.txt");
-            out = new PrintStream(fout);
-            // set output to stream
+            FileOutputStream fout = new FileOutputStream("out.txt");
+            PrintStream out = new PrintStream(fout);
+            // set output to print stream
             System.setOut(out);
 
             print_details();
 
-            // close all stream
+            // close file and print stream
             fout.close();
             out.close();
 
@@ -152,34 +150,33 @@ public class App
         System.out.printf("Enter choice: ");
         String choice = input.nextLine();
 
-        if(choice.equals("1"))
-        {
-            clear_screen();
-            print_details();
-            main_menu();
-        }
-        else if(choice.equals("2"))
-        {
-            clear_screen();
-            System.out.println("\nInventory under construction!");
-            main_menu();
-        }
-        else if(choice.equals("3"))
-        {
-            out_text();
-            System.out.println("Details saved! (out.txt)");
-            main_menu();
-        }
-        else if(choice.equals("4"))
-        {
-            clear_screen();
-            input.close();
-            System.out.println("\nGoodbye!");
-            System.exit(0);
-        }else{
-            clear_screen();
-            System.out.println("Invalid entry");
-            main_menu();
+        switch(choice){
+            case "1":
+                clear_screen();
+                print_details();
+                main_menu();
+                break;
+            case "2":
+                clear_screen();
+                System.out.println("\nInventory under construction!");
+                main_menu();
+                break;
+            case "3":
+                clear_screen();
+                out_text();
+                System.out.println("Details saved! (out.txt)");
+                main_menu();
+                break;
+            case "4":
+                clear_screen();
+                input.close();
+                System.out.println("\nGoodbye!");
+                System.exit(0);
+                break;
+            default:
+                clear_screen();
+                System.out.println("Invalid entry");
+                main_menu();
         }
     }
 
@@ -310,7 +307,6 @@ public class App
         }else{
             return base;
         }
-        
     }
 
     public static double compute_withholding()
