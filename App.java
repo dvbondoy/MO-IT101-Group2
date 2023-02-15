@@ -6,11 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
-/**
- * Hello world!
- *
- */
-public class App 
+public class App
 {
     // variables for employee details
     static String emp_number = "";
@@ -29,7 +25,8 @@ public class App
         int tries = 1;
         while(tries <=3){
             if(!login()){
-                System.out.println("Invalid credentials");
+                clear_screen();
+                System.out.println("Invalid credentials. "+tries+" of 3\n");
             }else{
                 break;
             }
@@ -37,6 +34,8 @@ public class App
         }
 
         if(tries > 3){
+            clear_screen();
+            System.out.println("Maximum login tries reach. Goodbye!\n");
             System.exit(0);
         }
 
@@ -44,13 +43,19 @@ public class App
         main_menu();
     }
 
+    /**
+     * Prompt user to login
+     * search empoyee number by calling open_text()
+     * if valid login, assign data from open_text() to global variables
+     * @return true/false
+     */
     public static boolean login()
     {
         System.out.println(">> Login <<");
-        System.out.printf("+------------------+\n");
-        System.out.printf("Enter username: ");
+        System.out.println("===========");
+        System.out.printf("Username:$ ");
         String username = input.nextLine();
-        System.out.printf("Enter password:");
+        System.out.printf("Password:$ ");
         String password = input.nextLine();
 
         // find employee number in the file
@@ -76,6 +81,11 @@ public class App
         return false;
     }
 
+    /**
+     * Used by login() to search for employee number in employee_details.txt
+     * @param username
+     * @return null/string array
+     */
     public static String[] open_text(String username)
     {
         try {
@@ -108,6 +118,10 @@ public class App
         return null;
     }
 
+    /**
+     * Write employee details in out.txt
+     * caller: main_menu()
+     */
     public static void out_text()
     {
         try {
@@ -136,6 +150,10 @@ public class App
         }
     }
 
+    /**
+     * Application main screen
+     * Provide input for user to select action to perform
+     */
     public static void main_menu()
     {
         System.out.println("");
@@ -147,7 +165,7 @@ public class App
         System.out.println("[ 3 ] : Print");
         System.out.println("[ 4 ] : Exit\n");
         
-        System.out.printf("Enter choice: ");
+        System.out.printf("Enter choice:$ ");
         String choice = input.nextLine();
 
         switch(choice){
@@ -180,6 +198,10 @@ public class App
         }
     }
 
+    /**
+     * Display details, earnings and deductions of currently logged user
+     * caller: main_menu()
+     */
     public static void print_details()
     {
         gross = total_hours() * hourly_rate;
@@ -235,13 +257,19 @@ public class App
         System.out.printf("-----------------------------------------------%n");
     }
 
+    /**
+     * clear console
+     */
     public static void clear_screen()
     {
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }
 
-    // calculate and return total hours work in a week
+    /**
+     * calculate total hours work in a week
+     * @return total
+     */
     public static int total_hours()
     {
         // sept 11, 2022 - sept 19, 2022
@@ -257,6 +285,10 @@ public class App
         return total;
     }
 
+    /**
+     * compute SSS deduction
+     * @return rrate
+     */
     public static double compute_sss()
     {
         // check the beginning and return the rate
@@ -288,6 +320,10 @@ public class App
         return rrate;
     }
 
+    /**
+     * computer PAG-IBIG deduction
+     * @return double
+     */
     public static double compute_pagibig()
     {
         if(basic_salary <= 1500){
@@ -297,6 +333,10 @@ public class App
         }
     }
 
+    /**
+     * compute PHILHEALTH deduction
+     * @return double
+     */
     public static double compute_philhealth()
     {
         double base = (basic_salary * 0.03) / 2;
@@ -309,6 +349,10 @@ public class App
         }
     }
 
+    /**
+     * compute withholding tax
+     * @return double
+     */
     public static double compute_withholding()
     {
         double total_deductions = compute_pagibig()+compute_philhealth()+compute_philhealth();
