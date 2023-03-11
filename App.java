@@ -47,6 +47,7 @@ public class App
      * Prompt user to login
      * search empoyee number by calling open_text()
      * if valid login, assign data from open_text() to global variables
+     * default password is "letmein"
      * @return true/false
      */
     public static boolean login()
@@ -268,7 +269,7 @@ public class App
 
     /**
      * calculate total hours work in a week
-     * @return total
+     * @return int total
      */
     public static int total_hours()
     {
@@ -287,7 +288,7 @@ public class App
 
     /**
      * compute SSS deduction
-     * @return rrate
+     * @return double rrate
      */
     public static double compute_sss()
     {
