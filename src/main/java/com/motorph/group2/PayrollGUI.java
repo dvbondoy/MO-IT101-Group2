@@ -316,6 +316,15 @@ public class PayrollGUI extends javax.swing.JFrame {
         
         this.emp_name.setText(str[1]);
         this.emp_bday.setText(str[2]);
+        this.earn_hours.setText (str[3]);
+        this.earn_gross.setText (str[4]);
+        this.earn_perks.setText (str[5]);
+        this.earn_net.setText (str[6]);
+        this.deduc_sss.setText (str[7]);
+        this.deduc_pagibig.setText (str[8]);
+        this.deduc_phealth.setText (str[9]);
+        this.deduc_tax.setText (str[10]);
+        this.deduc_total.setText (str[11]);
         
         for (String str1 : str) {
             System.out.println(str1);
