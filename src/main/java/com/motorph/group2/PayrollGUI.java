@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.motorph.group2;
+import java.util.Formatter;
+
 
 /**
  *
@@ -159,20 +161,24 @@ public class PayrollGUI extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPhilhealth)
-                    .addComponent(txtSss)
-                    .addComponent(txtPagibig))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel19)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtTotalDeduct))
+                        .addComponent(txtPhilhealth)
+                        .addGap(29, 29, 29))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtPagibig)
+                            .addComponent(txtSss))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addGap(27, 27, 27)
-                        .addComponent(txtTax)))
-                .addGap(47, 47, 47))
+                        .addComponent(txtTax))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTotalDeduct, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,26 +221,27 @@ public class PayrollGUI extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(txtGross)
-                        .addGap(1, 1, 1))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtHours)))
-                .addGap(18, 18, 18)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtGross, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(txtHours, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addGap(32, 32, 32)
-                        .addComponent(txtPerks)
-                        .addGap(1, 1, 1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNet)))
-                .addGap(54, 54, 54))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(txtNet, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPerks, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,23 +321,37 @@ public class PayrollGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             String[] str = Payroll.open_text(this.txtEmpID.getText());
-        
+            
             this.txtName.setText(str[1]);
             this.txtBirthday.setText(str[2]);
-            this.txtHours.setText (str[3]);
-            this.txtGross.setText (str[4]);
-            this.txtPerks.setText (str[5]);
-            this.txtNet.setText (str[6]);
-//            this.deduc_sss.setText (str[7]);
-//            this.deduc_pagibig.setText (str[8]);
-//            this.deduc_phealth.setText (str[9]);
-//            this.deduc_tax.setText (str[10]);
-//            this.deduc_total.setText (str[11]);
+            this.txtHours.setText(String.valueOf(Payroll.total_hours()));
+            
+            Formatter grossFormatter = new Formatter();
+            grossFormatter.format("%.2f",Payroll.gross);
+            this.txtGross.setText (String.valueOf(grossFormatter));
+            this.txtPerks.setText (String.valueOf(Payroll.perks));
+            
+            Formatter netFormatter = new Formatter();
+            netFormatter.format("%.2f", Payroll.net);
+            this.txtNet.setText (String.valueOf(netFormatter));
+            
+            this.txtSss.setText(String.valueOf(Payroll.sss));
+            this.txtPagibig.setText(String.valueOf(Payroll.pagibig));
+            this.txtPhilhealth.setText(String.valueOf(Payroll.phealth));
+            
+            Formatter taxFormatter = new Formatter();
+            taxFormatter.format("%.2f", Payroll.withholding);
+            this.txtTax.setText(String.valueOf(taxFormatter));
+            
+            Formatter totalFormatter = new Formatter();
+            totalFormatter.format("%.2f", Payroll.deductions);
+            this.txtTotalDeduct.setText(String.valueOf(totalFormatter));
+            
 
             for (String str1 : str) {
                 System.out.println(str1);
             }
-        } catch(Exception e) {
+        } catch(NumberFormatException e) {
             System.out.println(e);
         }
     }//GEN-LAST:event_btnSearchActionPerformed
