@@ -30,7 +30,7 @@ public class Payroll {
     static Scanner input = new Scanner(System.in);
     
     public static void main( String[] args ) {
-        open_text("10001");
+//        open_text("10001");
     }
     
     public Payroll() {
