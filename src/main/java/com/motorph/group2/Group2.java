@@ -12,5 +12,7 @@ public class Group2 {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
+        PayrollGUI payGui = new PayrollGUI();
+        payGui.showGUI();
     }
 }

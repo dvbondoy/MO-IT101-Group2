@@ -390,6 +390,15 @@ public class PayrollGUI extends javax.swing.JFrame {
             }
         });
     }
+    
+    public static void showGUI() {
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PayrollGUI().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
