@@ -34,6 +34,27 @@ public class EmployeesGUI extends javax.swing.JFrame {
         tblData = new javax.swing.JTable();
         //put some code here
         btnVDetails = new javax.swing.JButton();
+        infrmDetails = new javax.swing.JInternalFrame();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblSss = new javax.swing.JLabel();
+        lblPagibig = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblPhilhealth = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblTotalDeduct = new javax.swing.JLabel();
+        lblTax = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblHours = new javax.swing.JLabel();
+        lblGross = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        lblPerks = new javax.swing.JLabel();
+        lblNet = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,23 +68,181 @@ public class EmployeesGUI extends javax.swing.JFrame {
             }
         });
 
+        infrmDetails.setVisible(true);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Deductions"));
+
+        jLabel1.setText("SSS:");
+
+        jLabel2.setText("Pagibig:");
+
+        lblSss.setText("jLabel3");
+
+        lblPagibig.setText("jLabel4");
+
+        jLabel3.setText("Philhealth:");
+
+        lblPhilhealth.setText("jLabel4");
+
+        jLabel5.setText("Tax:");
+
+        lblTotalDeduct.setText("Total:");
+
+        lblTax.setText("jLabel7");
+
+        lblTotal.setText("jLabel8");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPhilhealth)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSss)
+                            .addComponent(lblPagibig))
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(lblTotalDeduct))
+                        .addGap(58, 58, 58)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTotal)
+                            .addComponent(lblTax))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblSss)
+                    .addComponent(jLabel5)
+                    .addComponent(lblTax))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lblPagibig)
+                    .addComponent(lblTotalDeduct)
+                    .addComponent(lblTotal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblPhilhealth))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Earnings"));
+
+        jLabel4.setText("Hours:");
+
+        jLabel6.setText("Gross:");
+
+        lblHours.setText("jLabel7");
+
+        lblGross.setText("jLabel9");
+
+        jLabel10.setText("Perks:");
+
+        jLabel11.setText("Net Pay:");
+
+        lblPerks.setText("jLabel12");
+
+        lblNet.setText("jLabel13");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(41, 41, 41)
+                        .addComponent(lblHours))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblGross)))
+                .addGap(96, 96, 96)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNet)
+                    .addComponent(lblPerks))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lblHours)
+                    .addComponent(jLabel10)
+                    .addComponent(lblPerks))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblGross)
+                    .addComponent(jLabel11)
+                    .addComponent(lblNet))
+                .addContainerGap(92, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout infrmDetailsLayout = new javax.swing.GroupLayout(infrmDetails.getContentPane());
+        infrmDetails.getContentPane().setLayout(infrmDetailsLayout);
+        infrmDetailsLayout.setHorizontalGroup(
+            infrmDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(infrmDetailsLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        infrmDetailsLayout.setVerticalGroup(
+            infrmDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infrmDetailsLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVDetails)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(infrmDetails)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnVDetails)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVDetails)
-                .addGap(0, 35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(infrmDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
         );
 
         pack();
@@ -72,10 +251,25 @@ public class EmployeesGUI extends javax.swing.JFrame {
     private void btnVDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVDetailsActionPerformed
         // TODO add your handling code here:
         int r = tblData.getSelectedRow();
-        System.out.println(tblData.getValueAt(r, 0));
         
-//        EmpGUI emp = new EmpGUI();
-//        emp.showGUI();
+        Object a = tblData.getValueAt(r, 0);
+//        System.out.println(a.toString());
+        String[] emp = Utils.open_text(a.toString());
+        Employee e = new Employee(emp);
+        
+        this.lblSss.setText(e.getSss().toString());
+        this.lblPagibig.setText(e.getPagibig().toString());
+        this.lblPhilhealth.setText(e.getPhilhealth().toString());
+        this.lblTax.setText(e.getWithholding().toString());
+        this.lblTotal.setText(e.getTotalDeductions().toString());
+        
+        this.lblHours.setText(e.hoursWOrk().toString());
+        this.lblGross.setText(e.getGross().toString());
+        this.lblPerks.setText(e.getPerks().toString());
+        Double net = e.getGross() - e.getTotalDeductions();
+        this.lblNet.setText(net.toString());
+        
+
     }//GEN-LAST:event_btnVDetailsActionPerformed
 
     /**
@@ -117,7 +311,28 @@ public class EmployeesGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVDetails;
+    private javax.swing.JInternalFrame infrmDetails;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblGross;
+    private javax.swing.JLabel lblHours;
+    private javax.swing.JLabel lblNet;
+    private javax.swing.JLabel lblPagibig;
+    private javax.swing.JLabel lblPerks;
+    private javax.swing.JLabel lblPhilhealth;
+    private javax.swing.JLabel lblSss;
+    private javax.swing.JLabel lblTax;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblTotalDeduct;
     private javax.swing.JTable tblData;
     // End of variables declaration//GEN-END:variables
 }

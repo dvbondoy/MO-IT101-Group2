@@ -17,15 +17,15 @@ public class EmpGUI extends javax.swing.JFrame {
     public EmpGUI() {
         initComponents();
         
-        String[] list = Utils.open_text("10001");
-        Employee emp = new Employee(list);
+//        String[] list = Utils.open_text("10001");
+//        Employee emp = new Employee(list);
+//        
+//        this.lblID.setText(emp.emp_number);
+//        this.lblName.setText(emp.name);
+//        this.lblBirthday.setText(emp.bday);
         
-        this.lblID.setText(emp.emp_number);
-        this.lblName.setText(emp.name);
-        this.lblBirthday.setText(emp.bday);
-        
-        Object[][] d = Utils.GetData("10001");
-        System.out.println(d);
+//        Object[][] d = Utils.GetData("10001");
+//        System.out.println(d);
     }
 
     /**
@@ -152,13 +152,23 @@ public class EmpGUI extends javax.swing.JFrame {
         });
     }
     
-    public static void showGUI() {
+    public void showGUI(String id) {
+        System.out.println(id);
+//        String[] list = Utils.open_text(id);
+//        Employee emp = new Employee(list);
+//        
+//        this.lblID.setText(emp.emp_number);
+//        this.lblName.setText(emp.name);
+//        this.lblBirthday.setText(emp.bday);
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new EmpGUI().setVisible(true);
             }
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

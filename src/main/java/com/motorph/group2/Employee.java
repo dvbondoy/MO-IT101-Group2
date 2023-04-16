@@ -17,11 +17,11 @@ public class Employee {
     String emp_number;
     String name;
     String bday;
-    double basic_salary;
-    double rice_subsidy;
-    double phone_allowance;
-    double clothing_allowance;
-    double hourly_rate;
+    Double basic_salary;
+    Double rice_subsidy;
+    Double phone_allowance;
+    Double clothing_allowance;
+    Double hourly_rate;
     
     public Employee(String[] emp) {
         this.emp_number = emp[0];
@@ -34,13 +34,13 @@ public class Employee {
         this.hourly_rate = Double.parseDouble(emp[8]);
     }
     
-    private int hoursWOrk(){
+    public Double hoursWOrk(){
         // sept 11, 2022 - sept 19, 2022
-        int total = 0;
-        for(int i = 0; i <6; i++){
-            int out = 17;
-            int in = 8;
-            int breaktime = 1;
+        Double total = 0.0;
+        for(Double i = 0.0; i <6.0; i++){
+            Double out = 17.0;
+            Double in = 8.0;
+            Double breaktime = 1.0;
             total += (out - in) - breaktime;
         }
         return total;
@@ -61,11 +61,11 @@ public class Employee {
             return 1125.00;
         }
 
-        double rate = 157.5;
-        double rrate = 0;
+        Double rate = 157.5;
+        Double rrate = 0.0;
         // not in the beginning and end, it must be inside
         // iterate every 500 then increase rate by 22.5 for every iteration
-        for(double i = 3250; i < 24751; i += 500){
+        for(Double i = 3250.0; i < 24751; i += 500){
             // System.out.println(String.format("%s - %s = %s",i, i+500, rate));
             // for every iteration check salary range
             if(basic_salary >= i && basic_salary < i+500){
@@ -89,7 +89,7 @@ public class Employee {
     }
     
     public Double getPhilhealth() {
-        double base = (basic_salary * 0.03) / 2;
+        Double base = (basic_salary * 0.03) / 2;
         if(base <= 300){
             return 300.0;
         }else if(base >= 1800){
@@ -100,9 +100,9 @@ public class Employee {
     }
     
     public Double getWithholding() {
-        double total_deductions = getPagibig() + getPhilhealth() + getSss();
-        double taxable_income = this.basic_salary - total_deductions;
-        double tax = 0;
+        Double total_deductions = getPagibig() + getPhilhealth() + getSss();
+        Double taxable_income = this.basic_salary - total_deductions;
+        Double tax = 0.0;
 
         if(taxable_income <= 20832){
             return 0.0;
@@ -120,4 +120,18 @@ public class Employee {
 
         return tax / 4;
     }
+    
+    public Double getTotalDeductions() {
+        return getPagibig() + getSss() + getWithholding();
+    }
+    
+    public Double getPerks() {
+        Double p = this.clothing_allowance+this.rice_subsidy+this.phone_allowance;
+        
+        return p;
+    }
+    
+//    public Double getNet() {
+//        
+//    }
 }

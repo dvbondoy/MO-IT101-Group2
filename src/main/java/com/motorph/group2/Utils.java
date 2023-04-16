@@ -52,12 +52,16 @@ public class Utils {
         return null;
     }
     
-    public static Object[][] GetData(String id) {
+    public static Object[][] GetData() {
         //            BufferedReader br = new BufferedReader(new FileReader("employee-details.txt"));
         //            String line;
+//10001,Crisostomo Jose,February 14 1988,62670,1500,1000,1000,31335,373.04
+//10002,Mata Christian,October 21 1987,42975,1500,800,800,21488,255.8
+//10003,San Jose Brad ,March 15 1996,42975,1500,800,800,21488,255.8
         Object[][] data = {
             {"10001","Crisostomo", "Jose","S123","Phl123","T123","Pag123"},
-            {"10002","Gan", "Charles","S321","Phl321","T321","Pag321"}
+            {"10002","Mata", "Christian","S321","Phl321","T321","Pag321"},
+            {"10003","San Jose", "Brad","S321","Phl321","T321","Pag321"}
         };
         //            int counter = 0;
         //            while((line = br.readLine()) != null) {
