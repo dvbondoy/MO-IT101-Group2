@@ -4,15 +4,15 @@
  */
 package com.motorph.group2;
 
-import java.util.Formatter;
+//import java.util.Formatter;
 
 import java.util.Scanner;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+//import java.io.FileNotFoundException;
+//import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintStream;
+//import java.io.IOException;
+//import java.io.PrintStream;
 
 /**
  *
@@ -171,7 +171,7 @@ public class Payroll {
     
     public static double compute_withholding()
     {
-        double total_deductions = compute_pagibig()+compute_philhealth()+compute_philhealth();
+        double total_deductions = compute_pagibig()+compute_philhealth()+compute_sss();
         double taxable_income = basic_salary - total_deductions;
         double tax = 0;
 

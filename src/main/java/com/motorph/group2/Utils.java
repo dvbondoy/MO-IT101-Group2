@@ -4,9 +4,24 @@
  */
 package com.motorph.group2;
 
+//import com.opencsv.CSVReader;
+//import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.exceptions.CsvValidationException;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static org.apache.commons.lang3.StringUtils.trim;
 
 /**
  *
@@ -17,28 +32,25 @@ public class Utils {
 //        Object[][] d = GetData("10001");
 //        System.out.println(d);
 //    }
-    public static String[] open_text(String id)
+    public static String[] open_text(String empid)
     {
         try {
-            // create br variable to hold csv file data
-            // open our csv file with FileReader giving our path with csv_file variable
-            BufferedReader br = new BufferedReader(new FileReader("employee-details.txt"));
-            String line;
+            BufferedReader br = new BufferedReader(new FileReader("details.csv"));
+            String line = "";
 
-            // create a while loop and assign our csv file to line variable
-            // until the end of the file {null}
             while((line = br.readLine()) != null) {
-                // create an array of string variable that will hold each line
-                // each array element is separated by comma
-                // this will result to: employee = {"10001","Juan","Dela Cruz","etc"}
-                // to access each element we have to declare: employee[0] for 10001, employee[1] for Juan and etc
-                String[] employee = line.split(",");
-
-//                System.out.println(employee[1]);
                 
-                if(employee[0].equals(id)) {
+                String employee[] = line.split(",");
+//                System.out.println(employee);
+                
+//                System.out.println("employee[1]:"+employee[1]);
+//                System.out.println("employee[0]:"+employee[0]);
+//                System.out.println("empid:"+empid);
+                
+                if(employee[0].equals(empid)) {
+                    System.out.println("Found it!");
                     br.close();
-                    
+
                     return employee;
                 }
             }
@@ -52,17 +64,47 @@ public class Utils {
         return null;
     }
     
-    public static Object[][] GetData() {
-        //            BufferedReader br = new BufferedReader(new FileReader("employee-details.txt"));
-        //            String line;
+    public static boolean write_line(){
+        try {
+            FileWriter pw = new FileWriter("details.csv",true);
+            pw.write("10004,Marc Darell,March 15 1996,42975,1500,800,800,21488,255.8");
+            pw.close();
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
+    
+    public static String[][] GetData() {
 //10001,Crisostomo Jose,February 14 1988,62670,1500,1000,1000,31335,373.04
 //10002,Mata Christian,October 21 1987,42975,1500,800,800,21488,255.8
 //10003,San Jose Brad ,March 15 1996,42975,1500,800,800,21488,255.8
-        Object[][] data = {
+
+        try {
+            CSVReader reader = new CSVReaderBuilder(new FileReader("details.csv")).build();
+            
+            String [] nextLine;
+            while ((nextLine = reader.readNext()) != null) {
+               // nextLine[] is an array of values from the line
+               System.out.println(nextLine[0] + nextLine[1] + "etc...");
+            }
+//            return reader;
+        } catch(FileNotFoundException e){
+            System.out.print(e);
+        } catch (IOException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CsvValidationException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String data[][] = {
             {"10001","Crisostomo", "Jose","S123","Phl123","T123","Pag123"},
             {"10002","Mata", "Christian","S321","Phl321","T321","Pag321"},
             {"10003","San Jose", "Brad","S321","Phl321","T321","Pag321"}
         };
+        
         //            int counter = 0;
         //            while((line = br.readLine()) != null) {
         //                data[0][counter] = line.split(",");
@@ -72,4 +114,33 @@ public class Utils {
 
         return data;
     }
+    
+    public static List<String[]> readAllLines() throws Exception {
+//        try (Reader reader = Files.newBufferedReader(filePath)) {
+//            try (CSVReader csvReader = new CSVReader(reader)) {
+//                return csvReader.readAll();
+//            }
+//        }
+        try (CSVReader reader = new CSVReaderBuilder(new FileReader("details.csv")).build();) {
+            List<String[]> myEntries = reader.readAll();
+            return myEntries;
+        }
+    }
+    
+    public static CSVReader readAllCSV() {
+        try {
+            CSVReader reader = new CSVReaderBuilder(new FileReader("details.csv")).build();
+            return reader;
+        } catch(FileNotFoundException e){
+            System.out.print(e);
+        }
+        
+//        String [] nextLine;
+//        while ((nextLine = reader.readNext()) != null) {
+//           // nextLine[] is an array of values from the line
+//           System.out.println(nextLine[0] + nextLine[1] + "etc...");
+//        }
+        return null;
+    }
+    
 }

@@ -4,6 +4,12 @@
  */
 package com.motorph.group2;
 
+import java.util.Arrays;
+import java.util.Formatter;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+
 
 /**
  *
@@ -33,7 +39,7 @@ public class EmployeesGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
         //put some code here
-        btnVDetails = new javax.swing.JButton();
+        btnDetails = new javax.swing.JButton();
         infrmDetails = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -55,16 +61,17 @@ public class EmployeesGUI extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         lblPerks = new javax.swing.JLabel();
         lblNet = new javax.swing.JLabel();
+        btnAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tblData.setModel(new MyModel());
         jScrollPane1.setViewportView(tblData);
 
-        btnVDetails.setText("VIew");
-        btnVDetails.addActionListener(new java.awt.event.ActionListener() {
+        btnDetails.setText("VIew");
+        btnDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVDetailsActionPerformed(evt);
+                btnDetailsActionPerformed(evt);
             }
         });
 
@@ -182,7 +189,7 @@ public class EmployeesGUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNet)
                     .addComponent(lblPerks))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,18 +227,27 @@ public class EmployeesGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(infrmDetails)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnVDetails)))
+                        .addComponent(btnAdd)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDetails))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -239,7 +255,9 @@ public class EmployeesGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnVDetails)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDetails)
+                    .addComponent(btnAdd))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(infrmDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
@@ -248,13 +266,12 @@ public class EmployeesGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVDetailsActionPerformed
+    private void btnDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsActionPerformed
         // TODO add your handling code here:
         int r = tblData.getSelectedRow();
         
         Object a = tblData.getValueAt(r, 0);
-//        System.out.println(a.toString());
-        String[] emp = Utils.open_text(a.toString());
+        String emp[] = Utils.open_text(a.toString());
         Employee e = new Employee(emp);
         
         this.lblSss.setText(e.getSss().toString());
@@ -264,18 +281,31 @@ public class EmployeesGUI extends javax.swing.JFrame {
         this.lblTotal.setText(e.getTotalDeductions().toString());
         
         this.lblHours.setText(e.hoursWOrk().toString());
-        this.lblGross.setText(e.getGross().toString());
         this.lblPerks.setText(e.getPerks().toString());
+        
+        Formatter grossFormatter = new Formatter();
+        grossFormatter.format("%.2f", e.getGross());
+        this.lblGross.setText(grossFormatter.toString());
+        
         Double net = e.getGross() - e.getTotalDeductions();
-        this.lblNet.setText(net.toString());
+        Formatter netFormatter = new Formatter();
+        netFormatter.format("%.2f",net);
+//        this.txtGross.setText (String.valueOf(grossFormatter));
+        this.lblNet.setText(netFormatter.toString());
         
 
-    }//GEN-LAST:event_btnVDetailsActionPerformed
+    }//GEN-LAST:event_btnDetailsActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new AddRecordGUI().setVisible(true);
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -306,11 +336,36 @@ public class EmployeesGUI extends javax.swing.JFrame {
             }
         });
         
+//        List<String[]> myEntries = Utils.readAllLines();
         
+//        Iterator it = myEntries.iterator();
+//        while(it.hasNext()){
+//          System.out.println(it.next());
+//          
+//        }
+
+//        for (String[] lines : myEntries) {
+//            for (String token : lines) {
+//                System.out.println(token);
+//            }
+//        }
+//        test.forEach(System.out::println);
+//        System.out.println(test);
+    }
+    
+    public void showGUI() {
+        
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new EmployeesGUI().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVDetails;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDetails;
     private javax.swing.JInternalFrame infrmDetails;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -23,15 +23,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="633" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="infrmDetails" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="btnVDetails" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnDetails" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jScrollPane1" alignment="0" pref="621" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -42,7 +44,10 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jScrollPane1" min="-2" pref="154" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnVDetails" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnDetails" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="12" max="32767" attributes="0"/>
               <Component id="infrmDetails" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
@@ -70,12 +75,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnVDetails">
+    <Component class="javax.swing.JButton" name="btnDetails">
       <Properties>
         <Property name="text" type="java.lang.String" value="VIew"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVDetailsActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDetailsActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JInternalFrame" name="infrmDetails">
@@ -264,7 +269,7 @@
                           <Component id="lblNet" min="-2" max="-2" attributes="0"/>
                           <Component id="lblPerks" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="204" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -335,5 +340,13 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="btnAdd">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

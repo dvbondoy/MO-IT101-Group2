@@ -27,7 +27,7 @@ class MyModel extends AbstractTableModel {
 //                {"Tottenham", 8, 5, 0, 3, 9, 12}
 //        };
 
-        private final Object[][] data = Utils.GetData();
+        public String data[][] = Utils.GetData();
 
         /**
          * Returns the number of rows in the table model.
