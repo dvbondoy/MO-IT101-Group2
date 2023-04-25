@@ -9,6 +9,7 @@ import java.util.Formatter;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -22,9 +23,6 @@ public class EmployeesGUI extends javax.swing.JFrame {
      */
     public EmployeesGUI() {
         initComponents();
-        
-        
-         
     }
 
     /**
@@ -38,9 +36,16 @@ public class EmployeesGUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
-        //put some code here
-        btnDetails = new javax.swing.JButton();
         infrmDetails = new javax.swing.JInternalFrame();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblHours = new javax.swing.JLabel();
+        lblGross = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        lblPerks = new javax.swing.JLabel();
+        lblNet = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,30 +57,83 @@ public class EmployeesGUI extends javax.swing.JFrame {
         lblTotalDeduct = new javax.swing.JLabel();
         lblTax = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        lblHours = new javax.swing.JLabel();
-        lblGross = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        lblPerks = new javax.swing.JLabel();
-        lblNet = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tblData.setModel(new MyModel());
-        jScrollPane1.setViewportView(tblData);
-
-        btnDetails.setText("VIew");
-        btnDetails.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDetailsActionPerformed(evt);
+        tblData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDataMouseClicked(evt);
             }
         });
+        jScrollPane1.setViewportView(tblData);
 
         infrmDetails.setVisible(true);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Earnings"));
+
+        jLabel4.setText("Hours:");
+
+        jLabel6.setText("Gross:");
+
+        lblHours.setText("jLabel7");
+
+        lblGross.setText("jLabel9");
+
+        jLabel10.setText("Perks:");
+
+        jLabel11.setText("Net Pay:");
+
+        lblPerks.setText("jLabel12");
+
+        lblNet.setText("jLabel13");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(41, 41, 41)
+                        .addComponent(lblHours))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblGross)))
+                .addGap(96, 96, 96)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNet)
+                    .addComponent(lblPerks))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lblHours)
+                    .addComponent(jLabel10)
+                    .addComponent(lblPerks))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblGross)
+                    .addComponent(jLabel11)
+                    .addComponent(lblNet))
+                .addContainerGap(92, Short.MAX_VALUE))
+        );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Deductions"));
 
@@ -148,83 +206,25 @@ public class EmployeesGUI extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Earnings"));
-
-        jLabel4.setText("Hours:");
-
-        jLabel6.setText("Gross:");
-
-        lblHours.setText("jLabel7");
-
-        lblGross.setText("jLabel9");
-
-        jLabel10.setText("Perks:");
-
-        jLabel11.setText("Net Pay:");
-
-        lblPerks.setText("jLabel12");
-
-        lblNet.setText("jLabel13");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(41, 41, 41)
-                        .addComponent(lblHours))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblGross)))
-                .addGap(96, 96, 96)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addGap(52, 52, 52)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNet)
-                    .addComponent(lblPerks))
-                .addContainerGap(204, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lblHours)
-                    .addComponent(jLabel10)
-                    .addComponent(lblPerks))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(lblGross)
-                    .addComponent(jLabel11)
-                    .addComponent(lblNet))
-                .addContainerGap(92, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout infrmDetailsLayout = new javax.swing.GroupLayout(infrmDetails.getContentPane());
         infrmDetails.getContentPane().setLayout(infrmDetailsLayout);
         infrmDetailsLayout.setHorizontalGroup(
             infrmDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(infrmDetailsLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(infrmDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         infrmDetailsLayout.setVerticalGroup(
             infrmDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infrmDetailsLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         btnAdd.setText("Add");
@@ -234,73 +234,110 @@ public class EmployeesGUI extends javax.swing.JFrame {
             }
         });
 
+        btnUpdate.setText("Update");
+
+        btnDelete.setBackground(new java.awt.Color(255, 102, 102));
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Search");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(infrmDetails)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(infrmDetails)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnAdd)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDetails))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDelete))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextField1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDetails)
-                    .addComponent(btnAdd))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(infrmDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnDelete))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsActionPerformed
-        // TODO add your handling code here:
-        int r = tblData.getSelectedRow();
-        
-        Object a = tblData.getValueAt(r, 0);
-        String emp[] = Utils.open_text(a.toString());
-        Employee e = new Employee(emp);
-        
-        this.lblSss.setText(e.getSss().toString());
-        this.lblPagibig.setText(e.getPagibig().toString());
-        this.lblPhilhealth.setText(e.getPhilhealth().toString());
-        this.lblTax.setText(e.getWithholding().toString());
-        this.lblTotal.setText(e.getTotalDeductions().toString());
-        
-        this.lblHours.setText(e.hoursWOrk().toString());
-        this.lblPerks.setText(e.getPerks().toString());
-        
-        Formatter grossFormatter = new Formatter();
-        grossFormatter.format("%.2f", e.getGross());
-        this.lblGross.setText(grossFormatter.toString());
-        
-        Double net = e.getGross() - e.getTotalDeductions();
-        Formatter netFormatter = new Formatter();
-        netFormatter.format("%.2f",net);
-//        this.txtGross.setText (String.valueOf(grossFormatter));
-        this.lblNet.setText(netFormatter.toString());
-        
-
-    }//GEN-LAST:event_btnDetailsActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         new AddRecordGUI().setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void tblDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDataMouseClicked
+        // TODO add your handling code here:
+        Object a = tblData.getModel().getValueAt(tblData.getSelectedRow(), 0);
+        System.out.println(a.toString());
+        
+        int r = tblData.getSelectedRow();
+        
+//        Object a = tblData.getValueAt(r, 0);
+//        String emp[] = Utils.open_text(a.toString());
+//        Employee e = new Employee(emp);
+        
+//        this.lblSss.setText(e.getSss().toString());
+//        this.lblPagibig.setText(e.getPagibig().toString());
+//        this.lblPhilhealth.setText(e.getPhilhealth().toString());
+//        this.lblTax.setText(e.getWithholding().toString());
+//        this.lblTotal.setText(e.getTotalDeductions().toString());
+//        
+//        this.lblHours.setText(e.hoursWOrk().toString());
+//        this.lblPerks.setText(e.getPerks().toString());
+//        
+//        Formatter grossFormatter = new Formatter();
+//        grossFormatter.format("%.2f", e.getGross());
+//        this.lblGross.setText(grossFormatter.toString());
+//        
+//        Double net = e.getGross() - e.getTotalDeductions();
+//        Formatter netFormatter = new Formatter();
+//        netFormatter.format("%.2f",net);
+//        this.txtGross.setText (String.valueOf(grossFormatter));
+//        this.lblNet.setText(netFormatter.toString());
+    }//GEN-LAST:event_tblDataMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblData.getSelectedRow(); // get the selected row index
+        if (selectedRow != -1) { // if a row is selected
+            DefaultTableModel model = (DefaultTableModel) tblData.getModel();
+            model.removeRow(selectedRow); // remove the row from the data model
+            model.fireTableRowsDeleted(selectedRow, selectedRow); // notify the table of the change
+        }
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,23 +372,7 @@ public class EmployeesGUI extends javax.swing.JFrame {
                 new EmployeesGUI().setVisible(true);
             }
         });
-        
-//        List<String[]> myEntries = Utils.readAllLines();
-        
-//        Iterator it = myEntries.iterator();
-//        while(it.hasNext()){
-//          System.out.println(it.next());
-//          
-//        }
-
-//        for (String[] lines : myEntries) {
-//            for (String token : lines) {
-//                System.out.println(token);
-//            }
-//        }
-//        test.forEach(System.out::println);
-//        System.out.println(test);
-    }
+    }   
     
     public void showGUI() {
         
@@ -361,12 +382,31 @@ public class EmployeesGUI extends javax.swing.JFrame {
                 new EmployeesGUI().setVisible(true);
             }
         });
+        
+//        tblData.getColumnModel().getColumn(3).setWidth(0);
+//        tblData.getColumnModel().getColumn(4).setWidth(0);
+//        tblData.getColumnModel().getColumn(5).setWidth(0);
+        
+//        tblData.removeColumn(tblData.getColumnModel().getColumn(3));
+//        tblData.removeColumn(tblData.getColumnModel().getColumn(4));
+//        tblData.removeColumn(tblData.getColumnModel().getColumn(5));
+//        tblData.removeColumn(tblData.getColumnModel().getColumn(10));
+//        tblData.removeColumn(tblData.getColumnModel().getColumn(11));
+//        tblData.removeColumn(tblData.getColumnModel().getColumn(12));
+//        tblData.removeColumn(tblData.getColumnModel().getColumn(13));
+//        tblData.removeColumn(tblData.getColumnModel().getColumn(14));
+//        tblData.removeColumn(tblData.getColumnModel().getColumn(15));
+//        tblData.removeColumn(tblData.getColumnModel().getColumn(16));
+//        tblData.removeColumn(tblData.getColumnModel().getColumn(17));
+//        tblData.removeColumn(tblData.getColumnModel().getColumn(18));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnDetails;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JInternalFrame infrmDetails;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -378,6 +418,7 @@ public class EmployeesGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblGross;
     private javax.swing.JLabel lblHours;
     private javax.swing.JLabel lblNet;

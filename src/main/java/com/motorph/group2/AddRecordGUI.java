@@ -461,23 +461,23 @@ public class AddRecordGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean save_record = Utils.write_line();
         
-        String newEmployee[] = {
-            this.txtEmpID1.getText()
-                ,this.txtLastName.getText()
-                ,this.txtBirthday.getText()
-        };
-        
-        for(String s : newEmployee){
-            System.out.println(s);
-        }
-        
-//        if(save_record){
-//            JOptionPane.showMessageDialog(null,"New record saved","Saved",1);
-//            this.setVisible(false);
-//            new EmployeesGUI().setVisible(true);
-//        }else{
-//            JOptionPane.showMessageDialog(null,"Error saving record","Error",1);
+//        String newEmployee[] = {
+//            this.txtEmpID1.getText()
+//                ,this.txtLastName.getText()
+//                ,this.txtBirthday.getText()
+//        };
+//        
+//        for(String s : newEmployee){
+//            System.out.println(s);
 //        }
+        
+        if(save_record){
+            JOptionPane.showMessageDialog(null,"New record saved","Saved",1);
+            this.setVisible(false);
+            new EmployeesGUI().setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null,"Error saving record","Error",1);
+        }
         
 //        try{
 //            System.out.println("csv writing test");
