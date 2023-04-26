@@ -443,8 +443,8 @@ public class AddRecordGUI extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new EmployeesGUI().setVisible(true);
+//        this.setVisible(false);
+//        new EmployeesGUI().setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
     private void txtTaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTaxActionPerformed
@@ -453,13 +453,13 @@ public class AddRecordGUI extends javax.swing.JFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new EmployeesGUI().setVisible(true);
+//        this.setVisible(false);
+//        new EmployeesGUI().setVisible(true);
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        boolean save_record = Utils.write_line();
+//        boolean save_record = Utils.write_line();
         
 //        String newEmployee[] = {
 //            this.txtEmpID1.getText()
@@ -471,13 +471,13 @@ public class AddRecordGUI extends javax.swing.JFrame {
 //            System.out.println(s);
 //        }
         
-        if(save_record){
-            JOptionPane.showMessageDialog(null,"New record saved","Saved",1);
-            this.setVisible(false);
-            new EmployeesGUI().setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(null,"Error saving record","Error",1);
-        }
+//        if(save_record){
+//            JOptionPane.showMessageDialog(null,"New record saved","Saved",1);
+////            this.setVisible(false);
+////            new EmployeesGUI().setVisible(true);
+//        }else{
+//            JOptionPane.showMessageDialog(null,"Error saving record","Error",1);
+//        }
         
 //        try{
 //            System.out.println("csv writing test");
