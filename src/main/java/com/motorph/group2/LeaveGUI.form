@@ -119,7 +119,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Date:"/>
+            <Property name="text" type="java.lang.String" value="Date:(dd/mm/yy)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtDate">
@@ -127,7 +127,6 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format subtype="1" type="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="dd/mm/yyyy"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDateActionPerformed"/>
@@ -135,7 +134,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Type:"/>
+            <Property name="text" type="java.lang.String" value="Leave Type:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cboType">
@@ -179,7 +178,7 @@
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="lblVacation" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblSick" min="-2" max="-2" attributes="0"/>

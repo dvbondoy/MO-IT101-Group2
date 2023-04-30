@@ -64,17 +64,16 @@ public class LeaveGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Date:");
+        jLabel2.setText("Date:(dd/mm/yy)");
 
         txtDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        txtDate.setText("dd/mm/yyyy");
         txtDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDateActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Type:");
+        jLabel3.setText("Leave Type:");
 
         cboType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacation", "Sick", "Emergency" }));
 
@@ -143,7 +142,7 @@ public class LeaveGUI extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(1, 1, 1)
                 .addComponent(lblVacation)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSick)
@@ -218,18 +217,20 @@ public class LeaveGUI extends javax.swing.JFrame {
             this.txtDate.getText(),
             Type
         };
+//        System.out.println(this.txtDate.getText());
         Utils.writeLeaveToCsv(values);
         this.countLeaves();
         
         showMessageDialog(null, EmpID +" "+Type+ " leave applied");
         
-        this.txtDate.setText("dd/mm/yyyy");
+        this.txtDate.setText("");
         this.txtEmpID.setText("");
+        this.txtEmpID.requestFocus();
     }//GEN-LAST:event_btnApplyActionPerformed
 
     private void txtEmpIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpIDActionPerformed
         // TODO add your handling code here:
-        this.countLeaves();
+//        this.countLeaves();
         this.txtDate.requestFocus();
     }//GEN-LAST:event_txtEmpIDActionPerformed
 
