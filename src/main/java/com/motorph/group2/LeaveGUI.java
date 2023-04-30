@@ -6,6 +6,7 @@ package com.motorph.group2;
 
 import com.opencsv.CSVReader;
 import java.io.FileReader;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -55,6 +56,11 @@ public class LeaveGUI extends javax.swing.JFrame {
         txtEmpID.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtEmpIDFocusLost(evt);
+            }
+        });
+        txtEmpID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpIDActionPerformed(evt);
             }
         });
 
@@ -204,18 +210,28 @@ public class LeaveGUI extends javax.swing.JFrame {
 
     private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
         // TODO add your handling code here:
+        String EmpID = this.txtEmpID.getText();
+        String Type = this.cboType.getSelectedItem().toString();
+        
         String[] values = {
-            this.txtEmpID.getText(),
+            EmpID,
             this.txtDate.getText(),
-            this.cboType.getSelectedItem().toString()
+            Type
         };
         Utils.writeLeaveToCsv(values);
         this.countLeaves();
         
+        showMessageDialog(null, EmpID +" "+Type+ " leave applied");
+        
         this.txtDate.setText("dd/mm/yyyy");
         this.txtEmpID.setText("");
-        
     }//GEN-LAST:event_btnApplyActionPerformed
+
+    private void txtEmpIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpIDActionPerformed
+        // TODO add your handling code here:
+        this.countLeaves();
+        this.txtDate.requestFocus();
+    }//GEN-LAST:event_txtEmpIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,6 +279,7 @@ public class LeaveGUI extends javax.swing.JFrame {
             int Ecounter = 5;
             int Vcounter = 5;
             int Scounter = 5;
+            
             while ((nextRecord = csvReader.readNext()) != null) {
                 if(nextRecord[0].equals(this.txtEmpID.getText()) && nextRecord[2].equals("Emergency")){
                     Ecounter -= 1;
