@@ -234,7 +234,7 @@ public class CsvTableForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Deductions"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Social Services/Deductions"));
 
         jLabel6.setText("SSS:");
 

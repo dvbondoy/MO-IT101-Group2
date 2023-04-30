@@ -3,7 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.motorph.group2;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Formatter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -305,9 +313,8 @@ public class PayrollGUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -320,40 +327,65 @@ public class PayrollGUI extends javax.swing.JFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         try {
-            String[] str = Payroll.open_text(this.txtEmpID.getText());
-            
-            this.txtName.setText(str[1]);
-            this.txtBirthday.setText(str[2]);
-            this.txtHours.setText(String.valueOf(Payroll.total_hours()));
-            
-            Formatter grossFormatter = new Formatter();
-            grossFormatter.format("%.2f",Payroll.gross);
-            this.txtGross.setText (String.valueOf(grossFormatter));
-            this.txtPerks.setText (String.valueOf(Payroll.perks));
-            
-            Formatter netFormatter = new Formatter();
-            netFormatter.format("%.2f", Payroll.net);
-            this.txtNet.setText (String.valueOf(netFormatter));
-            
-            this.txtSss.setText(String.valueOf(Payroll.sss));
-            this.txtPagibig.setText(String.valueOf(Payroll.pagibig));
-            this.txtPhilhealth.setText(String.valueOf(Payroll.phealth));
-            
-            Formatter taxFormatter = new Formatter();
-            taxFormatter.format("%.2f", Payroll.withholding);
-            this.txtTax.setText(String.valueOf(taxFormatter));
-            
-            Formatter totalFormatter = new Formatter();
-            totalFormatter.format("%.2f", Payroll.deductions);
-            this.txtTotalDeduct.setText(String.valueOf(totalFormatter));
-            
+  
+            FileReader filereader = new FileReader("employee-details.csv");
 
-            for (String str1 : str) {
-                System.out.println(str1);
+            CSVReader csvReader = new CSVReader(filereader);
+            String[] nextRecord;
+            String rec;
+
+            while ((nextRecord = csvReader.readNext()) != null) {
+                if(nextRecord[0].equals(this.txtEmpID.getText())){
+                    for(String cell:nextRecord){
+                        System.out.print(cell+"\t");
+                        
+                    }
+                    break;
+                }
+                
+//                System.out.println();
             }
-        } catch(NumberFormatException e) {
-            System.out.println(e);
         }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+//        try {
+            //            String[] str = Payroll.open_text(this.txtEmpID.getText());
+//            
+//            this.txtName.setText(str[1]);
+//            this.txtBirthday.setText(str[2]);
+//            this.txtHours.setText(String.valueOf(Payroll.total_hours()));
+//            
+//            Formatter grossFormatter = new Formatter();
+//            grossFormatter.format("%.2f",Payroll.gross);
+//            this.txtGross.setText (String.valueOf(grossFormatter));
+//            this.txtPerks.setText (String.valueOf(Payroll.perks));
+//            
+//            Formatter netFormatter = new Formatter();
+//            netFormatter.format("%.2f", Payroll.net);
+//            this.txtNet.setText (String.valueOf(netFormatter));
+//            
+//            this.txtSss.setText(String.valueOf(Payroll.sss));
+//            this.txtPagibig.setText(String.valueOf(Payroll.pagibig));
+//            this.txtPhilhealth.setText(String.valueOf(Payroll.phealth));
+//            
+//            Formatter taxFormatter = new Formatter();
+//            taxFormatter.format("%.2f", Payroll.withholding);
+//            this.txtTax.setText(String.valueOf(taxFormatter));
+//            
+//            Formatter totalFormatter = new Formatter();
+//            totalFormatter.format("%.2f", Payroll.deductions);
+//            this.txtTotalDeduct.setText(String.valueOf(totalFormatter));
+//            
+//
+//            for (String str1 : str) {
+//                System.out.println(str1);
+//            }
+//        } catch(NumberFormatException e) {
+//            System.out.println(e);
+//        } catch (IOException ex) {
+//            Logger.getLogger(PayrollGUI.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     /**

@@ -48,26 +48,16 @@ public class Payroll {
         
     }
     
-    public static String[] open_text(String username)
+    public static String[] open_text(String empid)
     {
         try {
-            // create br variable to hold csv file data
-            // open our csv file with FileReader giving our path with csv_file variable
-            BufferedReader br = new BufferedReader(new FileReader("employee-details.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("employee-details.csv"));
             String line = "";
 
-            // create a while loop and assign our csv file to line variable
-            // until the end of the file {null}
             while((line = br.readLine()) != null) {
-                // create an array of string variable that will hold each line
-                // each array element is separated by comma
-                // this will result to: employee = {"10001","Juan","Dela Cruz","etc"}
-                // to access each element we have to declare: employee[0] for 10001, employee[1] for Juan and etc
                 String[] employee = line.split(",");
 
-//                System.out.println(employee[1]);
-                
-                if(employee[0].equals(username)) {
+                if(employee[0].equals(empid)) {
                     br.close();
                     
                     emp_number = employee[0];
