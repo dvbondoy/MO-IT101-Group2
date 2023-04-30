@@ -260,20 +260,20 @@ public class LeaveGUI extends javax.swing.JFrame {
             CSVReader csvReader = new CSVReader(filereader);
             String[] nextRecord;
 
-            int Ecounter = 0;
-            int Vcounter = 0;
-            int Scounter = 0;
+            int Ecounter = 5;
+            int Vcounter = 5;
+            int Scounter = 5;
             while ((nextRecord = csvReader.readNext()) != null) {
                 if(nextRecord[0].equals(this.txtEmpID.getText()) && nextRecord[2].equals("Emergency")){
-                    Ecounter += 1;
+                    Ecounter -= 1;
                 }
                 
                 if(nextRecord[0].equals(this.txtEmpID.getText()) && nextRecord[2].equals("Sick")){
-                    Scounter += 1;
+                    Scounter -= 1;
                 }
                 
                 if(nextRecord[0].equals(this.txtEmpID.getText()) && nextRecord[2].equals("Vacation")){
-                    Vcounter += 1;
+                    Vcounter -= 1;
                 }
             }
             
