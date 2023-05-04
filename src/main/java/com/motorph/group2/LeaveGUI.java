@@ -46,7 +46,7 @@ public class LeaveGUI extends javax.swing.JFrame {
         lblSick = new javax.swing.JLabel();
         lblEmergency = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Leave Application");
         setName("frmLeave"); // NOI18N
         setResizable(false);

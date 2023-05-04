@@ -9,12 +9,15 @@ import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileReader;
 import java.io.IOException;
-//import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.RowFilter;
+//import javax.swing.RowSorter;
+//import javax.swing.event.RowSorterEvent;
+//import javax.swing.event.RowSorterListener;
 import javax.swing.table.DefaultTableModel;
+//import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -24,7 +27,6 @@ import javax.swing.table.TableRowSorter;
  */
 public class CsvTableForm extends javax.swing.JFrame {
     private DefaultTableModel tableModel;
-    private List<CsvData> dataList;
     private TableRowSorter<TableModel> rowSorter;
 
     /**
@@ -33,7 +35,6 @@ public class CsvTableForm extends javax.swing.JFrame {
     public CsvTableForm() {
         initComponents();
         
-//        
         
         // Read the CSV file using OpenCSV
         try {
@@ -42,31 +43,31 @@ public class CsvTableForm extends javax.swing.JFrame {
             
             // Assume the first row is the header row
             String[] header = data.get(0);
+            // Remove the header
             data.remove(0);
             
+            // create model
             tableModel = new DefaultTableModel(header, 0);
             
+            // assign all remaining rows to the model
             for (String[] row : data) {
                 tableModel.addRow(row);
             }
             
+            // set the model to our table
             jTable1.setModel(tableModel);
             
-            jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
-            jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
-            jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
+            this.rowSorter = new TableRowSorter<>(jTable1.getModel());
             
-            jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
-            jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
-            jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
-            jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
-            jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
-            jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
-            jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
-            jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
-            jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
+            // remove unnecessary rows
+            for(int i=0;i<3;i++){
+                jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
+            }
             
-
+            // remove unnecessary rows
+            for(int i=0;i<9;i++){
+                jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
+            }
             
             reader.close();
         } catch (IOException | NumberFormatException e) {
@@ -75,6 +76,30 @@ public class CsvTableForm extends javax.swing.JFrame {
         } catch (CsvException ex) {
             Logger.getLogger(CsvTableForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+//        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+//
+//        this.rowSorter.addRowSorterListener(new RowSorterListener() {
+//                @Override
+//            public void sorterChanged(RowSorterEvent e) {
+//                if (e.getType() == RowSorterEvent.Type.SORTED) {
+//                    List<RowSorter.SortKey> sortKeys = (List<RowSorter.SortKey>) rowSorter.getSortKeys();
+//                    if (!sortKeys.isEmpty()) {
+//                        RowSorter.SortKey sortKey = sortKeys.get(0);
+//                        int columnIndex = sortKey.getColumn();
+//                        int rowCount = tableModel.getRowCount();
+//                        for (int i = 0; i < rowCount; i++) {
+//                            Object[] rowData = new Object[tableModel.getColumnCount()];
+//                            for (int j = 0; j < tableModel.getColumnCount(); j++) {
+//                                rowData[j] = tableModel.getValueAt(i, j);
+//                            }
+//                            tableModel.removeRow(i);
+//                            tableModel.insertRow(i, rowData);
+//                        }
+//                    }
+//                }
+//            }
+//            });
     }
 
     /**
@@ -136,7 +161,7 @@ public class CsvTableForm extends javax.swing.JFrame {
         scpAddress = new javax.swing.JScrollPane();
         txaAddress = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -553,15 +578,41 @@ public class CsvTableForm extends javax.swing.JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
-        this.rowSorter = new TableRowSorter<>(jTable1.getModel());
         jTable1.setRowSorter(rowSorter);
+//        this.rowSorter = new TableRowSorter<>(jTable1.getModel());
+//        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
         String text = txtSearch.getText();
         if (text.trim().length() == 0) {
            rowSorter.setRowFilter(null);
         } else {
            rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+           
+//            this.rowSorter.addRowSorterListener(new RowSorterListener() {
+//                @Override
+//            public void sorterChanged(RowSorterEvent e) {
+//                if (e.getType() == RowSorterEvent.Type.SORTED) {
+//                    List<RowSorter.SortKey> sortKeys = (List<RowSorter.SortKey>) rowSorter.getSortKeys();
+//                    if (!sortKeys.isEmpty()) {
+//                        RowSorter.SortKey sortKey = sortKeys.get(0);
+//                        int columnIndex = sortKey.getColumn();
+//                        int rowCount = model.getRowCount();
+//                        for (int i = 0; i < rowCount; i++) {
+//                            Object[] rowData = new Object[model.getColumnCount()];
+//                            for (int j = 0; j < model.getColumnCount(); j++) {
+//                                rowData[j] = model.getValueAt(i, j);
+//                            }
+//                            model.removeRow(i);
+//                            model.insertRow(i, rowData);
+//                        }
+//                    }
+//                }
+//            }
+//            });
         }
+        
+        
+       
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed

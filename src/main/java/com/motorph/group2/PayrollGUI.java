@@ -4,14 +4,8 @@
  */
 package com.motorph.group2;
 import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvException;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.Formatter;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.text.DecimalFormat;
 
 
 /**
@@ -67,8 +61,13 @@ public class PayrollGUI extends javax.swing.JFrame {
         txtPerks = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtNet = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MotorPH Payroll");
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Enter ID"));
 
@@ -203,16 +202,18 @@ public class PayrollGUI extends javax.swing.JFrame {
                     .addComponent(jLabel19)
                     .addComponent(txtPagibig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTotalDeduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel16)
                     .addComponent(txtPhilhealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Earnings"));
 
         jLabel4.setText("Hours");
+
+        txtHours.setText("48.00");
 
         jLabel8.setText("Gross");
 
@@ -286,7 +287,7 @@ public class PayrollGUI extends javax.swing.JFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,19 +303,69 @@ public class PayrollGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton1.setText("Employee Mgt");
+        jButton1.setToolTipText("");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Apply Leave");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Exit");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -332,61 +383,42 @@ public class PayrollGUI extends javax.swing.JFrame {
 
             CSVReader csvReader = new CSVReader(filereader);
             String[] nextRecord;
-            String rec;
+            String[] record = {};
 
             while ((nextRecord = csvReader.readNext()) != null) {
                 if(nextRecord[0].equals(this.txtEmpID.getText())){
-                    for(String cell:nextRecord){
-                        System.out.print(cell+"\t");
-                        
-                    }
+                    record = nextRecord;
+//                    for(String cell:record){
+//                        System.out.print(cell+"\t");
+//                    }
                     break;
                 }
-                
-//                System.out.println();
             }
+            
+            displayDetails(record);
+            
+            filereader.close();
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-//        try {
-            //            String[] str = Payroll.open_text(this.txtEmpID.getText());
-//            
-//            this.txtName.setText(str[1]);
-//            this.txtBirthday.setText(str[2]);
-//            this.txtHours.setText(String.valueOf(Payroll.total_hours()));
-//            
-//            Formatter grossFormatter = new Formatter();
-//            grossFormatter.format("%.2f",Payroll.gross);
-//            this.txtGross.setText (String.valueOf(grossFormatter));
-//            this.txtPerks.setText (String.valueOf(Payroll.perks));
-//            
-//            Formatter netFormatter = new Formatter();
-//            netFormatter.format("%.2f", Payroll.net);
-//            this.txtNet.setText (String.valueOf(netFormatter));
-//            
-//            this.txtSss.setText(String.valueOf(Payroll.sss));
-//            this.txtPagibig.setText(String.valueOf(Payroll.pagibig));
-//            this.txtPhilhealth.setText(String.valueOf(Payroll.phealth));
-//            
-//            Formatter taxFormatter = new Formatter();
-//            taxFormatter.format("%.2f", Payroll.withholding);
-//            this.txtTax.setText(String.valueOf(taxFormatter));
-//            
-//            Formatter totalFormatter = new Formatter();
-//            totalFormatter.format("%.2f", Payroll.deductions);
-//            this.txtTotalDeduct.setText(String.valueOf(totalFormatter));
-//            
-//
-//            for (String str1 : str) {
-//                System.out.println(str1);
-//            }
-//        } catch(NumberFormatException e) {
-//            System.out.println(e);
-//        } catch (IOException ex) {
-//            Logger.getLogger(PayrollGUI.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        new LeaveGUI().setVisible(true);
+//        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new CsvTableForm().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -431,9 +463,30 @@ public class PayrollGUI extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void displayDetails(String[] employee){
+        DecimalFormat dc = new DecimalFormat("0.00");
+        
+        this.txtName.setText(employee[1]+" "+employee[2]);
+        this.txtBirthday.setText(employee[3]);
+        
+        PayrollUtils payroll = new PayrollUtils(employee);
+        
+        this.txtPagibig.setText(dc.format(payroll.computePagibig()));
+        this.txtSss.setText(dc.format(payroll.computeSss()));
+        this.txtPhilhealth.setText(dc.format(payroll.computePhilhealth()));
+        this.txtTax.setText(dc.format(payroll.computeTax()));
+        this.txtTotalDeduct.setText(dc.format(payroll.computeTotalDeductions()));
+        this.txtPerks.setText(dc.format(payroll.computePerks()));
+        this.txtGross.setText(dc.format(payroll.computeGross()));
+        this.txtNet.setText(dc.format(payroll.computeNet()));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
@@ -446,6 +499,7 @@ public class PayrollGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
