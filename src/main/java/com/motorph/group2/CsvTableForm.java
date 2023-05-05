@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 //import javax.swing.RowSorter;
 //import javax.swing.event.RowSorterEvent;
@@ -76,30 +77,6 @@ public class CsvTableForm extends javax.swing.JFrame {
         } catch (CsvException ex) {
             Logger.getLogger(CsvTableForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-//        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-//
-//        this.rowSorter.addRowSorterListener(new RowSorterListener() {
-//                @Override
-//            public void sorterChanged(RowSorterEvent e) {
-//                if (e.getType() == RowSorterEvent.Type.SORTED) {
-//                    List<RowSorter.SortKey> sortKeys = (List<RowSorter.SortKey>) rowSorter.getSortKeys();
-//                    if (!sortKeys.isEmpty()) {
-//                        RowSorter.SortKey sortKey = sortKeys.get(0);
-//                        int columnIndex = sortKey.getColumn();
-//                        int rowCount = tableModel.getRowCount();
-//                        for (int i = 0; i < rowCount; i++) {
-//                            Object[] rowData = new Object[tableModel.getColumnCount()];
-//                            for (int j = 0; j < tableModel.getColumnCount(); j++) {
-//                                rowData[j] = tableModel.getValueAt(i, j);
-//                            }
-//                            tableModel.removeRow(i);
-//                            tableModel.insertRow(i, rowData);
-//                        }
-//                    }
-//                }
-//            }
-//            });
     }
 
     /**
@@ -162,6 +139,7 @@ public class CsvTableForm extends javax.swing.JFrame {
         txaAddress = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Employee Management");
         setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -557,13 +535,15 @@ public class CsvTableForm extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        
         int selectedRow = jTable1.getSelectedRow();
         if (selectedRow >= 0) {
-//            dataList.remove(selectedRow);
-            ((DefaultTableModel)jTable1.getModel()).removeRow(jTable1.getSelectedRow());
-//            tableModel.removeRow(selectedRow);
+            int option = confirmDelete();
+            if(option == JOptionPane.YES_OPTION){
+                ((DefaultTableModel)jTable1.getModel()).removeRow(jTable1.getSelectedRow());
+                Utils.writeTableModelToCsv(tableModel, "employee-details.csv");
+            }
         }
-        Utils.writeTableModelToCsv(tableModel, "employee-details.csv");
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -654,6 +634,18 @@ public class CsvTableForm extends javax.swing.JFrame {
                 new CsvTableForm().setVisible(true);
             }
         });
+    }
+    
+    public int confirmDelete(){
+        int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete selected row?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        
+//        if (option == JOptionPane.YES_OPTION) {
+//            System.out.println("You clicked Yes");
+//        } else {
+//            System.out.println("You clicked No");
+//        }
+        
+        return option;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

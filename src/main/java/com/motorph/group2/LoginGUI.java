@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -104,13 +105,10 @@ public class LoginGUI extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         String username = this.txtUsername.getText();
+        
         char[] pass = this.pwdPassword.getPassword();
         String password = new String(pass);
-        String[] cred = null;
-
-        
         String hash = hashPassword(password);
-//        System.out.println(hash);
 
         try {
   
@@ -118,6 +116,8 @@ public class LoginGUI extends javax.swing.JFrame {
 
             CSVReader csvReader = new CSVReader(filereader);
             String[] nextRecord;
+            String[] cred = null;
+//            int counter = 0;
 
             while ((nextRecord = csvReader.readNext()) != null) {
                 if(nextRecord[0].equals(username ) && nextRecord[1].equals(hash)){
@@ -134,7 +134,9 @@ public class LoginGUI extends javax.swing.JFrame {
             filereader.close();
 
             if(cred == null){
-                System.out.println("Access denied");
+//                System.out.println("Access denied");
+                showMessageDialog(null, "Access Denied!");
+                
             }
         }
         catch (Exception e) {
