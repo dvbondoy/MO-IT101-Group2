@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 //import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -554,6 +555,7 @@ public class CsvTableForm extends javax.swing.JFrame {
         }
         
         Utils.writeTableModelToCsv(tableModel, "employee-details.csv");
+        showMessageDialog(null, "Record update.");
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

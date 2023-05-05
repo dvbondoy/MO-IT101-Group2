@@ -217,7 +217,6 @@ public class LeaveGUI extends javax.swing.JFrame {
             this.txtDate.getText(),
             Type
         };
-//        System.out.println(this.txtDate.getText());
         Utils.writeLeaveToCsv(values);
         this.countLeaves();
         
@@ -279,7 +278,7 @@ public class LeaveGUI extends javax.swing.JFrame {
 
             int Ecounter = 5;
             int Vcounter = 5;
-            int Scounter = 5;
+            int Scounter = 10;
             
             while ((nextRecord = csvReader.readNext()) != null) {
                 if(nextRecord[0].equals(this.txtEmpID.getText()) && nextRecord[2].equals("Emergency")){

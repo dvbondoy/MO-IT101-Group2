@@ -6,6 +6,8 @@ package com.motorph.group2;
 import com.opencsv.CSVReader;
 import java.io.FileReader;
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
 /**
@@ -213,8 +215,6 @@ public class PayrollGUI extends javax.swing.JFrame {
 
         jLabel4.setText("Hours");
 
-        txtHours.setText("48.00");
-
         jLabel8.setText("Gross");
 
         jLabel9.setText("Perks");
@@ -383,19 +383,24 @@ public class PayrollGUI extends javax.swing.JFrame {
 
             CSVReader csvReader = new CSVReader(filereader);
             String[] nextRecord;
-            String[] record = {};
+            String[] employee = null;
 
             while ((nextRecord = csvReader.readNext()) != null) {
                 if(nextRecord[0].equals(this.txtEmpID.getText())){
-                    record = nextRecord;
-//                    for(String cell:record){
+                    employee = nextRecord;
+//                    for(String cell:employee){
 //                        System.out.print(cell+"\t");
 //                    }
                     break;
                 }
             }
             
-            displayDetails(record);
+            if(employee == null){
+                showMessageDialog(null, "ID number not found");
+            }else{
+                displayDetails(employee);
+
+            }
             
             filereader.close();
         }
@@ -480,6 +485,7 @@ public class PayrollGUI extends javax.swing.JFrame {
         this.txtPerks.setText(dc.format(payroll.computePerks()));
         this.txtGross.setText(dc.format(payroll.computeGross()));
         this.txtNet.setText(dc.format(payroll.computeNet()));
+        this.txtHours.setText("48.00");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -39,7 +39,7 @@ public class PayrollUtils {
         }
 
         double rate = 157.5;
-        double rrate = 0;
+        double charge = 0;
         // not in the beginning and end, it must be inside
         // iterate every 500 then increase rate by 22.5 for every iteration
         for(double i = 3250; i < 24751; i += 500){
@@ -48,13 +48,13 @@ public class PayrollUtils {
             if(basic >= i && basic < i+500){
                 // we're inside that means we satisfy the salary range
                 // save the rateso we can return it, then exit the loop 
-                rrate = rate;
+                charge = rate;
                 break;
             }
             rate += 22.5;
         }
         // no explanation needed
-        return rrate/4;
+        return charge/4;
     }
     
     public double computePhilhealth(){
