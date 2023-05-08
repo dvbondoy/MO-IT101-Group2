@@ -9,17 +9,12 @@ import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
-//import javax.swing.RowSorter;
-//import javax.swing.event.RowSorterEvent;
-//import javax.swing.event.RowSorterListener;
 import javax.swing.table.DefaultTableModel;
-//import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -62,26 +57,15 @@ public class CsvTableForm extends javax.swing.JFrame {
             
             this.rowSorter = new TableRowSorter<>(jTable1.getModel());
             
-            // remove unnecessary rows
+            // hide unnecessary rows
             for(int i=3;i<6;i++){
 //                jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
                 jTable1.getColumnModel().getColumn(i).setMinWidth(0);
                 jTable1.getColumnModel().getColumn(i).setMaxWidth(0);
                 jTable1.getColumnModel().getColumn(i).setWidth(0);
             }
-//                jTable1.getColumnModel().getColumn(3).setMinWidth(0);
-//                jTable1.getColumnModel().getColumn(3).setMaxWidth(0);
-//                jTable1.getColumnModel().getColumn(3).setWidth(0);
-//                
-//                jTable1.getColumnModel().getColumn(4).setMinWidth(0);
-//                jTable1.getColumnModel().getColumn(4).setMaxWidth(0);
-//                jTable1.getColumnModel().getColumn(4).setWidth(0);
-//                
-//                jTable1.getColumnModel().getColumn(5).setMinWidth(0);
-//                jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
-//                jTable1.getColumnModel().getColumn(5).setWidth(0);
             
-            // remove unnecessary rows
+            // hide unnecessary rows
             for(int i=10;i<19;i++){
 //                jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
                 jTable1.getColumnModel().getColumn(i).setMinWidth(0);
@@ -532,7 +516,7 @@ public class CsvTableForm extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-//        System.out.println(jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+//        System.out.println(Integer.toString(jTable1.convertRowIndexToModel(jTable1.getSelectedRow())));
         
         txtLname.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
         txtFname.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
@@ -561,7 +545,7 @@ public class CsvTableForm extends javax.swing.JFrame {
         if (selectedRow >= 0) {
             int option = confirmDelete();
             if(option == JOptionPane.YES_OPTION){
-                ((DefaultTableModel)jTable1.getModel()).removeRow(jTable1.getSelectedRow());
+                ((DefaultTableModel)jTable1.getModel()).removeRow(jTable1.convertRowIndexToModel(jTable1.getSelectedRow()));
                 Utils.writeTableModelToCsv(tableModel, "employee-details.csv");
             }
         }
@@ -569,57 +553,45 @@ public class CsvTableForm extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        int row = jTable1.convertRowIndexToModel(jTable1.getSelectedRow());
+        
         if(jTable1.getSelectedRow()>=0) {
-            tableModel.setValueAt(txtLname.getText(), jTable1.getSelectedRow(), 1);
-            tableModel.setValueAt(txtFname.getText(), jTable1.getSelectedRow(), 2);
+            tableModel.setValueAt(txtLname.getText(), row, 1);
+            tableModel.setValueAt(txtFname.getText(), row, 2);
+            tableModel.setValueAt(txtBirthday, row, 3);
+            tableModel.setValueAt(txaAddress, row, 4);
+            tableModel.setValueAt(txtPhone, row, 5);
+            tableModel.setValueAt(txtSss, row, 6);
+            tableModel.setValueAt(txtPhilhealth, row, 7);
+            tableModel.setValueAt(txtTin, row, 8);
+            tableModel.setValueAt(txtPagibig, row, 9);
+            tableModel.setValueAt(txtStatus, row, 10);
+            tableModel.setValueAt(txtPosition, row, 11);
+            tableModel.setValueAt(txtSupervisor, row, 12);
+            tableModel.setValueAt(txtBasic, row, 13);
+            tableModel.setValueAt(txtRice, row, 14);
+            tableModel.setValueAt(txtPhoneAllow, row, 15);
+            tableModel.setValueAt(txtClothing, row, 16);
+            tableModel.setValueAt(txtMonthly, row, 17);
+            tableModel.setValueAt(txtHourly, row, 18);
         }
         
-        Utils.writeTableModelToCsv(tableModel, "employee-details.csv");
-        showMessageDialog(null, "Record updated.");
+        if(Utils.writeTableModelToCsv(tableModel, "employee-details.csv")){
+            showMessageDialog(null, "Record updated.");
+        }else{
+            showMessageDialog(null, "Error updating records");
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         jTable1.setRowSorter(rowSorter);
         
-//        int rowViewIndex = jTable1.getRowSorter().convertRowIndexToView(0);
-//        
-//        Object[] rowData = new Object[jTable1.getColumnCount()];
-//        for (int i = 0; i < jTable1.getColumnCount(); i++) {
-//            rowData[i] = jTable1.getValueAt(rowViewIndex, i);
-//        }
-//        System.out.println("Data of the first row: " + Arrays.toString(rowData));
-        
-//        this.rowSorter = new TableRowSorter<>(jTable1.getModel());
-//        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        
         String text = txtSearch.getText();
         if (text.trim().length() == 0) {
            rowSorter.setRowFilter(null);
         } else {
            rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-           
-//            this.rowSorter.addRowSorterListener(new RowSorterListener() {
-//                @Override
-//            public void sorterChanged(RowSorterEvent e) {
-//                if (e.getType() == RowSorterEvent.Type.SORTED) {
-//                    List<RowSorter.SortKey> sortKeys = (List<RowSorter.SortKey>) rowSorter.getSortKeys();
-//                    if (!sortKeys.isEmpty()) {
-//                        RowSorter.SortKey sortKey = sortKeys.get(0);
-//                        int columnIndex = sortKey.getColumn();
-//                        int rowCount = model.getRowCount();
-//                        for (int i = 0; i < rowCount; i++) {
-//                            Object[] rowData = new Object[model.getColumnCount()];
-//                            for (int j = 0; j < model.getColumnCount(); j++) {
-//                                rowData[j] = model.getValueAt(i, j);
-//                            }
-//                            model.removeRow(i);
-//                            model.insertRow(i, rowData);
-//                        }
-//                    }
-//                }
-//            }
-//            });
         }
         
         

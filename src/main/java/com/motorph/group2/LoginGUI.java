@@ -117,7 +117,6 @@ public class LoginGUI extends javax.swing.JFrame {
             CSVReader csvReader = new CSVReader(filereader);
             String[] nextRecord;
             String[] cred = null;
-//            int counter = 0;
 
             while ((nextRecord = csvReader.readNext()) != null) {
                 if(nextRecord[0].equals(username ) && nextRecord[1].equals(hash)){
@@ -134,7 +133,6 @@ public class LoginGUI extends javax.swing.JFrame {
             filereader.close();
 
             if(cred == null){
-//                System.out.println("Access denied");
                 showMessageDialog(null, "Access Denied!");
                 
             }
@@ -180,8 +178,6 @@ public class LoginGUI extends javax.swing.JFrame {
     }
     
     public String hashPassword(String text){
-//        String text = "This is the string to be encrypted";
-        
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(text.getBytes(StandardCharsets.UTF_8));

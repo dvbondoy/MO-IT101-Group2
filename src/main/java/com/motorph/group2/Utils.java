@@ -22,7 +22,7 @@ public class Utils {
 //        Object[][] d = GetData("10001");
 //        System.out.println(d);
 //    }
-    public static void writeTableModelToCsv(DefaultTableModel tableModel, String filePath) {
+    public static boolean writeTableModelToCsv(DefaultTableModel tableModel, String filePath) {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(filePath));
             
@@ -43,8 +43,11 @@ public class Utils {
             }
             
             writer.close();
+
+            return true;
         } catch (IOException e) {
         }
+        return false;
     }
     
     public static void writeLeaveToCsv(String[] data) {
