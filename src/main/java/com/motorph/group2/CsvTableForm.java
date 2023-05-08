@@ -9,6 +9,7 @@ import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,13 +63,30 @@ public class CsvTableForm extends javax.swing.JFrame {
             this.rowSorter = new TableRowSorter<>(jTable1.getModel());
             
             // remove unnecessary rows
-            for(int i=0;i<3;i++){
-                jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
+            for(int i=3;i<6;i++){
+//                jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
+                jTable1.getColumnModel().getColumn(i).setMinWidth(0);
+                jTable1.getColumnModel().getColumn(i).setMaxWidth(0);
+                jTable1.getColumnModel().getColumn(i).setWidth(0);
             }
+//                jTable1.getColumnModel().getColumn(3).setMinWidth(0);
+//                jTable1.getColumnModel().getColumn(3).setMaxWidth(0);
+//                jTable1.getColumnModel().getColumn(3).setWidth(0);
+//                
+//                jTable1.getColumnModel().getColumn(4).setMinWidth(0);
+//                jTable1.getColumnModel().getColumn(4).setMaxWidth(0);
+//                jTable1.getColumnModel().getColumn(4).setWidth(0);
+//                
+//                jTable1.getColumnModel().getColumn(5).setMinWidth(0);
+//                jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
+//                jTable1.getColumnModel().getColumn(5).setWidth(0);
             
             // remove unnecessary rows
-            for(int i=0;i<9;i++){
-                jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
+            for(int i=10;i<19;i++){
+//                jTable1.removeColumn(jTable1.getColumnModel().getColumn(7));
+                jTable1.getColumnModel().getColumn(i).setMinWidth(0);
+                jTable1.getColumnModel().getColumn(i).setMaxWidth(0);
+                jTable1.getColumnModel().getColumn(i).setWidth(0);
             }
             
             reader.close();
@@ -514,24 +532,26 @@ public class CsvTableForm extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        txtLname.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1).toString());
-        txtFname.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 2).toString());
-        txtBirthday.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 3).toString());
-        txtPhone.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 5).toString());
-        txaAddress.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 4).toString());
-        txtSss.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 6).toString());
-        txtPhilhealth.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 7).toString());
-        txtTin.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 8).toString());
-        txtPagibig.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 9).toString());
-        txtStatus.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 10).toString());
-        txtPosition.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 11).toString());
-        txtSupervisor.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 12).toString());
-        txtBasic.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 13).toString());
-        txtRice.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 14).toString());
-        txtPhoneAllow.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 15).toString());
-        txtClothing.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 16).toString());
-        txtMonthly.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 17).toString());
-        txtHourly.setText(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 18).toString());
+//        System.out.println(jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        
+        txtLname.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+        txtFname.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+        txtBirthday.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+        txtPhone.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString());
+        txaAddress.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
+        txtSss.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString());
+        txtPhilhealth.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString());
+        txtTin.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 8).toString());
+        txtPagibig.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 9).toString());
+        txtStatus.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 10).toString());
+        txtPosition.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 11).toString());
+        txtSupervisor.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 12).toString());
+        txtBasic.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 13).toString());
+        txtRice.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 14).toString());
+        txtPhoneAllow.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 15).toString());
+        txtClothing.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 16).toString());
+        txtMonthly.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 17).toString());
+        txtHourly.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 18).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -561,6 +581,15 @@ public class CsvTableForm extends javax.swing.JFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         jTable1.setRowSorter(rowSorter);
+        
+//        int rowViewIndex = jTable1.getRowSorter().convertRowIndexToView(0);
+//        
+//        Object[] rowData = new Object[jTable1.getColumnCount()];
+//        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+//            rowData[i] = jTable1.getValueAt(rowViewIndex, i);
+//        }
+//        System.out.println("Data of the first row: " + Arrays.toString(rowData));
+        
 //        this.rowSorter = new TableRowSorter<>(jTable1.getModel());
 //        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
