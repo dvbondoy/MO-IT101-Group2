@@ -555,7 +555,7 @@ public class CsvTableForm extends javax.swing.JFrame {
         }
         
         Utils.writeTableModelToCsv(tableModel, "employee-details.csv");
-        showMessageDialog(null, "Record update.");
+        showMessageDialog(null, "Record updated.");
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
