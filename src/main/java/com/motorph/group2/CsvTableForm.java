@@ -55,7 +55,7 @@ public class CsvTableForm extends javax.swing.JFrame {
             // set the model to our table
             jTable1.setModel(tableModel);
             
-            this.rowSorter = new TableRowSorter<>(jTable1.getModel());
+            rowSorter = new TableRowSorter<>(jTable1.getModel());
             
             // hide unnecessary rows
             for(int i=3;i<6;i++){
@@ -558,22 +558,22 @@ public class CsvTableForm extends javax.swing.JFrame {
         if(jTable1.getSelectedRow()>=0) {
             tableModel.setValueAt(txtLname.getText(), row, 1);
             tableModel.setValueAt(txtFname.getText(), row, 2);
-            tableModel.setValueAt(txtBirthday, row, 3);
-            tableModel.setValueAt(txaAddress, row, 4);
-            tableModel.setValueAt(txtPhone, row, 5);
-            tableModel.setValueAt(txtSss, row, 6);
-            tableModel.setValueAt(txtPhilhealth, row, 7);
-            tableModel.setValueAt(txtTin, row, 8);
-            tableModel.setValueAt(txtPagibig, row, 9);
-            tableModel.setValueAt(txtStatus, row, 10);
-            tableModel.setValueAt(txtPosition, row, 11);
-            tableModel.setValueAt(txtSupervisor, row, 12);
-            tableModel.setValueAt(txtBasic, row, 13);
-            tableModel.setValueAt(txtRice, row, 14);
-            tableModel.setValueAt(txtPhoneAllow, row, 15);
-            tableModel.setValueAt(txtClothing, row, 16);
-            tableModel.setValueAt(txtMonthly, row, 17);
-            tableModel.setValueAt(txtHourly, row, 18);
+            tableModel.setValueAt(txtBirthday.getText(), row, 3);
+            tableModel.setValueAt(txaAddress.getText(), row, 4);
+            tableModel.setValueAt(txtPhone.getText(), row, 5);
+            tableModel.setValueAt(txtSss.getText(), row, 6);
+            tableModel.setValueAt(txtPhilhealth.getText(), row, 7);
+            tableModel.setValueAt(txtTin.getText(), row, 8);
+            tableModel.setValueAt(txtPagibig.getText(), row, 9);
+            tableModel.setValueAt(txtStatus.getText(), row, 10);
+            tableModel.setValueAt(txtPosition.getText(), row, 11);
+            tableModel.setValueAt(txtSupervisor.getText(), row, 12);
+            tableModel.setValueAt(txtBasic.getText(), row, 13);
+            tableModel.setValueAt(txtRice.getText(), row, 14);
+            tableModel.setValueAt(txtPhoneAllow.getText(), row, 15);
+            tableModel.setValueAt(txtClothing.getText(), row, 16);
+            tableModel.setValueAt(txtMonthly.getText(), row, 17);
+            tableModel.setValueAt(txtHourly.getText(), row, 18);
         }
         
         if(Utils.writeTableModelToCsv(tableModel, "employee-details.csv")){
