@@ -76,6 +76,12 @@ public class PayrollGUI extends javax.swing.JFrame {
 
         jLabel5.setText("Employee ID:");
 
+        txtEmpID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpIDActionPerformed(evt);
+            }
+        });
+
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -446,6 +452,11 @@ public class PayrollGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         new CsvTableForm().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtEmpIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpIDActionPerformed
+        // TODO add your handling code here:
+        this.btnSearch.doClick();
+    }//GEN-LAST:event_txtEmpIDActionPerformed
 
     /**
      * @param args the command line arguments

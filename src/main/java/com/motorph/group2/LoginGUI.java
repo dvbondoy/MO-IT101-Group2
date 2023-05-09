@@ -44,7 +44,7 @@ public class LoginGUI extends javax.swing.JFrame {
         chkShow = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Login");
+        setTitle("MotorPH Login");
 
         jLabel1.setText("Username:");
 
@@ -60,6 +60,12 @@ public class LoginGUI extends javax.swing.JFrame {
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
+            }
+        });
+
+        pwdPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwdPasswordActionPerformed(evt);
             }
         });
 
@@ -165,6 +171,11 @@ public class LoginGUI extends javax.swing.JFrame {
             this.pwdPassword.setEchoChar('*');
         }
     }//GEN-LAST:event_chkShowActionPerformed
+
+    private void pwdPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdPasswordActionPerformed
+        // TODO add your handling code here:
+        this.btnLogin.doClick();
+    }//GEN-LAST:event_pwdPasswordActionPerformed
 
     /**
      * @param args the command line arguments
