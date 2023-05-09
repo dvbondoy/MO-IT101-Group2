@@ -23,6 +23,8 @@ public class LoginGUI extends javax.swing.JFrame {
      */
     public LoginGUI() {
         initComponents();
+        
+        setLocationRelativeTo(null);
     }
 
     /**

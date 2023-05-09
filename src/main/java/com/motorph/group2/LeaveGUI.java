@@ -6,6 +6,7 @@ package com.motorph.group2;
 
 import com.opencsv.CSVReader;
 import java.io.FileReader;
+import java.util.Date;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
@@ -19,6 +20,8 @@ public class LeaveGUI extends javax.swing.JFrame {
      */
     public LeaveGUI() {
         initComponents();
+        
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -34,9 +37,9 @@ public class LeaveGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtEmpID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtDate = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
         cboType = new javax.swing.JComboBox<>();
+        jdcDate = new com.toedter.calendar.JDateChooser();
         btnApply = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -64,14 +67,7 @@ public class LeaveGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Date:(dd/mm/yy)");
-
-        txtDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        txtDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDateActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Date of Leave:");
 
         jLabel3.setText("Leave Type:");
 
@@ -85,13 +81,14 @@ public class LeaveGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtDate, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEmpID, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboType, 0, 170, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jdcDate, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtEmpID, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cboType, 0, 170, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -101,10 +98,10 @@ public class LeaveGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jdcDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -142,7 +139,7 @@ public class LeaveGUI extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(1, 1, 1)
                 .addComponent(lblVacation)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSick)
@@ -181,7 +178,7 @@ public class LeaveGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,10 +195,6 @@ public class LeaveGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateActionPerformed
-
     private void txtEmpIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmpIDFocusLost
         // TODO add your handling code here:
         this.countLeaves();
@@ -209,28 +202,38 @@ public class LeaveGUI extends javax.swing.JFrame {
 
     private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
         // TODO add your handling code here:
-        String EmpID = this.txtEmpID.getText();
+        String empID = this.txtEmpID.getText();
         String Type = this.cboType.getSelectedItem().toString();
+        Date theDate = jdcDate.getDate();
         
-        String[] values = {
-            EmpID,
-            this.txtDate.getText(),
-            Type
-        };
-        Utils.writeLeaveToCsv(values);
-        this.countLeaves();
+        System.out.println(theDate);
+        System.out.println(empID);
+
         
-        showMessageDialog(null, EmpID +" "+Type+ " leave applied");
+        if(empID.equals("") || theDate == null){
+            showMessageDialog(null, "Check values");
+        }else{
+            String[] values = {
+                empID,
+                theDate.toString(),
+                Type
+            };
+            
+            Utils.writeLeaveToCsv(values);
+            this.countLeaves();
+
+            this.jdcDate.cleanup();
+            this.txtEmpID.setText("");
+            this.txtEmpID.requestFocus();
+
+            showMessageDialog(null, empID +" "+Type+ " leave applied");
+        }
         
-        this.txtDate.setText("");
-        this.txtEmpID.setText("");
-        this.txtEmpID.requestFocus();
     }//GEN-LAST:event_btnApplyActionPerformed
 
     private void txtEmpIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpIDActionPerformed
         // TODO add your handling code here:
-//        this.countLeaves();
-        this.txtDate.requestFocus();
+        this.jdcDate.requestFocus();
     }//GEN-LAST:event_txtEmpIDActionPerformed
 
     /**
@@ -317,10 +320,10 @@ public class LeaveGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private com.toedter.calendar.JDateChooser jdcDate;
     private javax.swing.JLabel lblEmergency;
     private javax.swing.JLabel lblSick;
     private javax.swing.JLabel lblVacation;
-    private javax.swing.JFormattedTextField txtDate;
     private javax.swing.JTextField txtEmpID;
     // End of variables declaration//GEN-END:variables
 }

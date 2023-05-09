@@ -33,6 +33,8 @@ public class CsvTableForm extends javax.swing.JFrame {
     public CsvTableForm() {
         initComponents();
         
+        setLocationRelativeTo(null);
+        
         
         // Read the CSV file using OpenCSV
         try {

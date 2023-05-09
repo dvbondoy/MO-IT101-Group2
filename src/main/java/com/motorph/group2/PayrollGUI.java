@@ -22,6 +22,7 @@ public class PayrollGUI extends javax.swing.JFrame {
     public PayrollGUI() {
         initComponents();
         
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -110,7 +111,11 @@ public class PayrollGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Name");
 
+        txtName.setEditable(false);
+
         jLabel3.setText("Birthday");
+
+        txtBirthday.setEditable(false);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -152,11 +157,20 @@ public class PayrollGUI extends javax.swing.JFrame {
 
         jLabel19.setText("Total");
 
+        txtSss.setEditable(false);
+
+        txtPagibig.setEditable(false);
+
+        txtPhilhealth.setEditable(false);
+
+        txtTax.setEditable(false);
         txtTax.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTaxActionPerformed(evt);
             }
         });
+
+        txtTotalDeduct.setEditable(false);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -215,11 +229,19 @@ public class PayrollGUI extends javax.swing.JFrame {
 
         jLabel4.setText("Hours");
 
+        txtHours.setEditable(false);
+
         jLabel8.setText("Gross");
+
+        txtGross.setEditable(false);
 
         jLabel9.setText("Perks");
 
+        txtPerks.setEditable(false);
+
         jLabel10.setText("Net pay");
+
+        txtNet.setEditable(false);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
