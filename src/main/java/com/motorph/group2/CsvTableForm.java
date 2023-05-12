@@ -172,6 +172,12 @@ public class CsvTableForm extends javax.swing.JFrame {
             }
         });
 
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+
         btnDelete.setBackground(new java.awt.Color(255, 51, 51));
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Delete");
@@ -605,6 +611,11 @@ public class CsvTableForm extends javax.swing.JFrame {
         txtSearch.setText("");
         this.btnSearchActionPerformed(evt);
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+        this.btnSearch.doClick();
+    }//GEN-LAST:event_txtSearchActionPerformed
 
     /**
      * @param args the command line arguments
